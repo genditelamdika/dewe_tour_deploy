@@ -368,6 +368,24 @@ func SendMail(status string, transaction models.Transaction) {
 	}
 }
 
+func (h *handlerTransaction) UpdateFullcounter(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	transaction, err := h.TransactionRepository.GetTransaction(int(id))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	}
+
+	transaction.Fullcounter = transaction.Fullcounter + transaction.Counterqty
+
+	data, err := h.TransactionRepository.UpdateFullcounter(transaction)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
+}
+
 // func convertResponsetransaction(u models.Transaction) models.Transaction {
 // 	return models.Transaction{
 // 		ID:         u.ID,

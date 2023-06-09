@@ -13,6 +13,7 @@ type TransactionRepository interface {
 	GetTransaction(ID int) (models.Transaction, error)
 	CreateTransaction(transaction models.Transaction) (models.Transaction, error)
 	UpdateTransaction(status string, orderId int) (models.Transaction, error)
+	UpdateFullcounter(transaction models.Transaction) (models.Transaction, error)
 	// DeleteTransaction(transaction models.Transaction) (models.Transaction, error)
 	// GetCategoryfilm(ID int) (models.Category, error)
 }
@@ -61,6 +62,12 @@ func (r *repository) UpdateTransaction(status string, orderId int) (models.Trans
 
 	transaction.Status = status
 	err := r.db.Save(&transaction).Error
+	return transaction, err
+}
+
+func (r *repository) UpdateFullcounter(transaction models.Transaction) (models.Transaction, error) {
+	err := r.db.Preload("User").Preload("Trip").Save(&transaction).Error
+
 	return transaction, err
 }
 
