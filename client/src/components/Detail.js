@@ -27,6 +27,15 @@ function Detail() {
   });
     // Function untuk meng-update view counter
     // const { id } = useParams();
+    const handleFullcounter = async (tr) => {
+      try {
+        // console.log(tripidd,"kontol teguhhhhh")
+          await API.patch(`/UpdateFullcounter/${1}`);
+      } catch (err) {
+          console.log(err);
+      }
+  };
+
 
   console.log(id);
 
@@ -334,6 +343,7 @@ function Detail() {
     <div style={{margin: "150px", marginTop:"0",marginBottom:"0"}}>
     <hr style={{ borderTop: "2px solid black" }} />
     </div>
+    <Button type="button" onClick={handleFullcounter}>tes update</Button>
     { state.isLogin ? (
 
   <Button  onClick={(e) => handleSubmit.mutate(e)} type="submit"  style={{
