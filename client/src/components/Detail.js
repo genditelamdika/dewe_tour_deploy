@@ -25,7 +25,8 @@ function Detail() {
     const response = await API.get(`/trip/${id}`);
     return response.data.data;
   });
-  console.log("ini tripku", trip);
+    // Function untuk meng-update view counter
+    // const { id } = useParams();
 
   console.log(id);
 
@@ -89,6 +90,7 @@ function Detail() {
     }, [trip, counterqty]);
     
     console.log("dataformdet", form)
+  
 
     const handleSubmit= useMutation(async (e) => {
       try {
