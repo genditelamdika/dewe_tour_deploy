@@ -17,5 +17,6 @@ func TripRoutes(e *echo.Group) {
 	e.GET("/trip/:id", h.GetTrip)
 	e.POST("/trip", middleware.UploadFile(h.CreateTrip))
 	e.PATCH("/trip/:id", middleware.UploadFile(h.UpdateTrip))
+	e.PATCH("/UpdateFullcounter/:id", middleware.Auth(h.UpdateFullcounter))
 	e.DELETE("/trip/:id", h.DeleteTrip)
 }

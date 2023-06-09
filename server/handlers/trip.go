@@ -214,6 +214,40 @@ func (h *handlerTrip) DeleteTrip(c echo.Context) error {
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: convertResponsetrip(data)})
 }
 
+// func (h *handlerTrip) UpdateFullcounter(c echo.Context) error {
+// 	id, _ := strconv.Atoi(c.Param("id"))
+
+// 	trip, err := h.TripRepository.GetTrip(int(id))
+// 	if err != nil {
+// 		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+// 	}
+// 	 // Mengambil counterqty dari tabel transaction
+
+// 	trip.Fullcounter = trip.Fullcounter + counterQty
+
+// 	data, err := h.TripRepository.UpdateFullcounter(trip)
+// 	if err != nil {
+// 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
+// 	}
+
+//		return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: data})
+//	}
+func (h *handlerTrip) UpdateFullcounter(c echo.Context) error {
+	id, _ := strconv.Atoi(c.Param("id"))
+
+	trip, err := h.TripRepository.GetTrip(int(id))
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()})
+	}
+
+	updatedTrip, err := h.TripRepository.UpdateFullcounter(trip)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: updatedTrip})
+}
+
 func convertResponsetrip(u models.Trip) models.Trip {
 	return models.Trip{
 		ID:    u.ID,

@@ -16,4 +16,5 @@ type Trip struct {
 	Quota          int           `json:"quota" form:"quota" gorm:"type: int"`
 	Description    string        `json:"description" form:"description" gorm:"type: varchar(255)"`
 	Image          string        `json:"image" form:"image" gorm:"type: varchar(255)"`
+	Fullcounter    int           `json:"fullcounter" form:"fullcounter"`
 }
