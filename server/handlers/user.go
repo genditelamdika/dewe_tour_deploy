@@ -54,8 +54,7 @@ func (h *handler) UpdateUser(c echo.Context) error {
 	// get the datafile here
 	dataFile := c.Get("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
-	dataFhoto := c.Get("dataFhoto").(string)
-	fmt.Println("this is data file", dataFhoto)
+
 	var ctx = context.Background()
 	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
 	var API_KEY = os.Getenv("API_KEY")
@@ -65,7 +64,7 @@ func (h *handler) UpdateUser(c echo.Context) error {
 	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 
 	// Upload file to Cloudinary ...
-	resp1, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
+	resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
 
 	if err != nil {
 		fmt.Println(err.Error())
@@ -77,7 +76,7 @@ func (h *handler) UpdateUser(c echo.Context) error {
 		Password: c.FormValue("password"),
 		Phone:    c.FormValue("phone"),
 		Address:  c.FormValue("address"),
-		Image:    resp1.SecureURL,
+		Image:    resp.SecureURL,
 	}
 
 	id, _ := strconv.Atoi(c.Param("id"))
