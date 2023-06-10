@@ -60,28 +60,87 @@ function Historytrip() {
                 <h1 style={{ marginLeft:"630px",height:"29px",fontSize:"20px",color:"#959595"}}>Saturday, 22 Juy 2020</h1>
 
             </div>
+            
             <div className="flex">
+                <img style={{position:"absolute",marginLeft:"680px"}} src={qrcode}></img>
+                <div style={{marginLeft:"0px",}}>
                 <h3 style={{fontSize:"25px",fontFamily:"Avenir",fontWeight:"bold"}}>{item.trip.title}</h3>
-                <h4 style={{marginLeft:"30px", fontSize:"20px",marginTop:"5px",fontFamily:"Avenir",fontWeight:"bold"}}>Date Trip</h4>
-                <h4 style={{marginLeft:"80px", fontSize:"20px", marginTop:"5px",fontFamily:"Avenir",fontWeight:"bold"}}>Duration</h4>
-            </div>
-            <div className="flex">
-                <p style={{color:"#959595"}}>{item.trip.country.name}</ p>
-                <p style={{marginLeft:"240px",color:"#959595"}}>{item.trip.datetrip}</p>
-                <p style={{marginLeft:"50px",color:"#959595"}}>6 Day 4 Night</p>
-            <img style={{position:"absolute",marginLeft:"680px"}} src={qrcode}></img>
-            </div>
-            <div className="flex">
+  
+      <div className="flex">
+      <h3 style={{fontSize:"20px", width:"180px", fontWeight:"bold", height: "33px",fontFamily: 'Avenir',alignItems:"center"}}> {item.trip.country.name}</h3>
+      </div>
+      </div>
+
+
+
+                <div style={{marginLeft:"110px",}}>
+                  <div claasName="flex">
+      <p style={{fontFamily: 'Avenir',fontSize:"20px",fontWeight:"bold",}}>Date trip</p>
+      </div>
+      <div className="flex">
+      <h3 style={{fontSize:"20px", width:"180px",color:"#A8A8A8", fontWeight:"bold", height: "33px",fontFamily: 'Avenir',alignItems:"center"}}> {item.trip.datetrip}</h3>
+      </div>
+      </div>
+
+
+      <div style={{marginLeft:"20px",}}>
+<div>
+
+      <h4 style={{marginLeft:"10px", fontSize:"20px", marginTop:"5px",fontFamily:"Avenir",fontWeight:"bold"}}>Duration</h4>
+</div>
+      <div className="flex">
+      <h3 style={{fontSize:"20px", width:"180px", fontWeight:"bold", height: "33px",color:"#A8A8A8",fontFamily: 'Avenir',alignItems:"center"}}> {item.trip.datetrip}</h3>
+      </div>
+      </div>
+      </div>
+
+
+      <div className="flex">
+                <div style={{marginLeft:"0px",}}>
                 <p style={{color: "green", paddingTop:"10px",fontFamily:"Avenir",fontWeight:"bold"}}>Approve</p>
-                <h4 style={{marginLeft:"250px",  fontSize:"20px",fontFamily:"Avenir",fontWeight:"bold"}}>Acomadation</h4>
-                <h4 style={{marginLeft:"50px",  fontSize:"20px",fontFamily:"Avenir",fontWeight:"bold"}}>Transportasion</h4>
-            </div>
+      </div>
+
+
+
+                <div style={{marginLeft:"230px",}}>
+                  <div claasName="flex">
+      <p style={{fontFamily: 'Avenir',fontWeight:"bold", fontSize:"20px",}}>Acommodation</p>
+      </div>
+      <div className="flex">
+      <h3 style={{fontSize:"20px", width:"180px",color:"#A8A8A8", fontWeight:"bold", fontFamily: 'Avenir',alignItems:"center"}}> {item.trip.acommodation}</h3>
+      </div>
+      </div>
+
+
+      <div style={{marginLeft:"20px",}}>
+<div>
+
+      <h4 style={{marginLeft:"10px", fontSize:"20px", marginTop:"5px",fontFamily:"Avenir",fontWeight:"bold"}}>transportation</h4>
+</div>
+      <div className="flex">
+      <h3 style={{fontSize:"20px", width:"180px", fontWeight:"bold",color:"#A8A8A8", height: "33px",fontFamily: 'Avenir',alignItems:"center"}}> {item.trip.transportasion}</h3>
+      </div>
+      </div>
+      <p style={{marginTop:"30px",marginLeft:"20px"}}>15180026</p>
+      </div>
+
 
             <div className="flex">
+                {/* <p style={{color:"#959595"}}>{item.trip.country.name}</ p> */}
+                {/* <p style={{marginLeft:"240px",color:"#959595"}}>{item.trip.datetrip}</p> */}
+                {/* <p style={{marginLeft:"50px",color:"#959595"}}>6 Day 4 Night</p> */}
+            {/* <img style={{position:"absolute",marginLeft:"680px"}} src={qrcode}></img> */}
+            </div>
+            {/* <div className="flex">
+                <h4 style={{marginLeft:"250px",  fontSize:"20px",fontFamily:"Avenir",fontWeight:"bold"}}>Acomadation</h4>
+                <h4 style={{marginLeft:"50px",  fontSize:"20px",fontFamily:"Avenir",fontWeight:"bold"}}>Transportasion</h4>
+            </div> */}
+
+            {/* <div className="flex">
                 <p style={{marginLeft:"310px",color:"#959595"}}>{item.trip.acommodation}</p>
                 <p style={{marginLeft:"60px",color:"#959595"}}>{item.trip.transportasion}</p>
                 <p style={{marginLeft:"130px",fontFamily:"Avenir",fontWeight:"bold",marginTop:"20px"}}>1518A29</p>
-            </div>
+            </div> */}
             <div className="flex" >
                 <p >No</p>
                 <p style={{marginLeft:"40px",fontWeight:"bold"}}>Fullname</p>
@@ -96,7 +155,7 @@ function Historytrip() {
                 <p style={{marginLeft:"30px",color:"#959595"}}>{profileData.fullname}</p>
                 <p  style={{marginLeft:"30px",color:"#959595"}}>Man</p>
                 <p  style={{marginLeft:"30px",color:"#959595"}}>{profileData.phone}</p>
-                <h3  style={{marginLeft:"200px",fontWeight:"bold"}}>Qty</h3>
+                <h3  style={{marginLeft:"290px",fontWeight:"bold"}}>Qty</h3>
                 <h3  style={{marginLeft:"50px",fontWeight:"bold"}}>:</h3>
                 <h3  style={{marginLeft:"40px",fontWeight:"bold"}}>{item.counterqty}</h3>
             </div>

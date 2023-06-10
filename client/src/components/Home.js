@@ -113,7 +113,7 @@ function Home() {
               <Link className="text-decoration-none " to={`/Detail/${item.id}`}>
                 <Col key={idx} >
                   <Card style={{ padding:"30px" }}>
-                  <p className="text-decoration-none" style={{marginLeft:"290px",marginTop:"30px",position:"absolute",background:"white",borderRadius:"5px 0 0 5px",textAlign:"center",width:"50px",height:"30px"}}>0/{item.quota}</p>
+                  <p className="text-decoration-none" style={{marginLeft:"290px",marginTop:"30px",position:"absolute",background:"white",borderRadius:"5px 0 0 5px",textAlign:"center",width:"50px",height:"30px"}}>{item.fullcounter}/{item.quota}</p>
                     <Card.Img variant="dark" src={item.image} />
                     <Card.Body>
                       <Card.Title style={{ color: "black" }}>

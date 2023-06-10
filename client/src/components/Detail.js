@@ -288,8 +288,8 @@ function Detail() {
       <img style={{height:"30px"}} src={ihotel}/>
       <h3 style={{fontSize:"20px", width:"180px", fontWeight:"bold", height: "33px",fontFamily: 'Avenir',alignItems:"center"}}> {trip?.acommodation}</h3>
       </div>
-
       </div>
+      
       <div style={{marginLeft:"20px"}}>
       <p style={{ color:"#A8A8A8"}}>Tranformation</p>
       <div className="flex">

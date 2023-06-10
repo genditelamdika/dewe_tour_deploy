@@ -9,10 +9,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Footer from '../components/Footer'
 import Historytrip from "./Historytrip";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 
 function Profile() {
+  let navigate = useNavigate()
 
   const [profileData,setProfil] = useState({});
 
@@ -123,7 +124,7 @@ function Profile() {
                   left:"838px",
                   top:"163px",
                 }}></img>
-              <button
+              <button   onClick={() => navigate(`/Editchanel/${profileData.id}`)}
                 className=" mt-3"
                 style={{ background: "#FFAF00", border: "none",
                 position: "absolute;",
