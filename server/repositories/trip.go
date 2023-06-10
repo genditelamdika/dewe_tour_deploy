@@ -12,7 +12,7 @@ type TripRepository interface {
 	CreateTrip(trip models.Trip) (models.Trip, error)
 	UpdateTrip(trip models.Trip, Id int) (models.Trip, error)
 	DeleteTrip(trip models.Trip) (models.Trip, error)
-	UpdateFullcounter(trip models.Trip) (models.Trip, error)
+	// UpdateFullcounter(trip models.Trip) (models.Trip, error)
 	GetCountrytrip(ID int) (models.Country, error)
 	// GetTransactionCounterQty(tripID int) (int, error)
 	// GetCategoryfilm(ID int) (models.Category, error)
@@ -45,44 +45,6 @@ func (r *repository) UpdateTrip(trip models.Trip, Id int) (models.Trip, error) {
 	err := r.db.Model(&trip).Updates(&trip).Error
 
 	return trip, err
-}
-
-// func (r *repository) UpdateTrip(trip models.Trip) (models.Trip, error) {
-// 	err := r.db.Transaction(func(db *gorm.DB) error {
-// 		if err := r.db.Preload("Country").Model(&trip).Updates(&trip).Error; err != nil {
-// 			return err
-// 		}
-// 		if err := r.db.Exec("UPDATE trips SET country_id=? WHERE id=?", trip.CountryID, trip.ID).Error; err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// 	return trip, err
-// }
-
-// func (r *repository) UpdateFullcounter(trip models.Trip) (models.Trip, error) {
-// 	err := r.db.Preload("Country").Preload("Transaction").Save(&trip).Error
-
-//		return trip, err
-//	}
-func (r *repository) UpdateFullcounter(trip models.Trip) (models.Trip, error) {
-	var counterQty int
-	err := r.db.Model(&models.Transaction{}).Select("SUM(counterqty)").Where("trip_id = ?", trip.ID).Scan(&counterQty).Error
-	if err != nil {
-		return trip, err
-	}
-
-	trip.Fullcounter = counterQty
-
-	err = r.db.Preload("Country").Preload("Transaction").Save(&trip).Error
-	return trip, err
-}
-func (r *repository) GetTransactionCounterQty(tripID int, counterQty *int) error {
-	err := r.db.Model(&models.Transaction{}).
-		Select("COALESCE(SUM(counterqty), 0)").
-		Where("trip_id = ?", tripID).
-		Scan(counterQty).Error
-	return err
 }
 
 func (r *repository) DeleteTrip(trip models.Trip) (models.Trip, error) {

@@ -64,32 +64,3 @@ func (r *repository) UpdateTransaction(status string, orderId int) (models.Trans
 	err := r.db.Save(&transaction).Error
 	return transaction, err
 }
-
-// func (r *repository) UpdateTransaction(status string, orderId int) (models.Transaction, error) {
-// 	var transaction models.Transaction
-// 	r.db.Preload("User").First(&transaction, orderId)
-
-// 	if status != transaction.Status && status == "success" {
-// 		var user models.User
-// 		r.db.First(&user, transaction.UserID)
-// 		user.Subcribe = true
-// 		r.db.Save(&user)
-// 	}
-
-// 	transaction.Status = status
-// 	err := r.db.Save(&transaction).Error
-// 	return transaction, err
-// }
-
-// func (r *repository) UpdateFullcounter(transaction models.Transaction) (models.Transaction, error) {
-// 	err := r.db.Preload("User").Preload("Trip").Save(&transaction).Error
-
-// 	return transaction, err
-// }
-
-// func (r *repository) UpdateTransaction(transaction models.Transaction, Id int) (models.Transaction, error) {
-// 	err := r.db.Preload("Trip.Country").Model(&transaction).Updates(&transaction).Error
-// 	// err := r.db.Exec("UPDATE transactions SET trip_id=? WHERE id=?", transaction.TripID, transaction.ID).Error
-
-// 	return transaction, err
-// }
