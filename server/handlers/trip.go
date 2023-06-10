@@ -57,6 +57,7 @@ func (h *handlerTrip) CreateTrip(c echo.Context) error {
 	day, _ := strconv.Atoi(c.FormValue("day"))
 	price, _ := strconv.Atoi(c.FormValue("price"))
 	quota, _ := strconv.Atoi(c.FormValue("quota"))
+	fullcounter, _ := strconv.Atoi(c.FormValue("fullcounter"))
 	night, _ := strconv.Atoi(c.FormValue("night"))
 
 	request := tripdto.CreateTripRequest{
@@ -70,6 +71,7 @@ func (h *handlerTrip) CreateTrip(c echo.Context) error {
 		DateTrip:       c.FormValue("datetrip"),
 		Price:          price,
 		Quota:          quota,
+		Fullcounter:    fullcounter,
 		Description:    c.FormValue("description"),
 		Image:          dataFile,
 	}
@@ -107,6 +109,7 @@ func (h *handlerTrip) CreateTrip(c echo.Context) error {
 		DateTrip:       request.DateTrip,
 		Price:          request.Price,
 		Quota:          request.Quota,
+		Fullcounter:    request.Fullcounter,
 		Description:    request.Description,
 		Image:          resp.SecureURL,
 	}
