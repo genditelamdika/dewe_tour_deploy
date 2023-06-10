@@ -27,10 +27,10 @@ function Detail() {
   });
     // Function untuk meng-update view counter
     // const { id } = useParams();
-    const handleFullcounter = async (tr) => {
+    const handleFullcounter = async (id) => {
       try {
         // console.log(tripidd,"kontol teguhhhhh")
-          await API.patch(`/UpdateFullcounter/${1}`);
+          await API.patch(`/UpdateFullcounter/${id}}`);
       } catch (err) {
           console.log(err);
       }
