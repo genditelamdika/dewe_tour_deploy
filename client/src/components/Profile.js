@@ -115,7 +115,7 @@ function Profile() {
             </Col>
             <Col sm={6} style={{ paddingLeft: "10px" }}>
               <img
-                src={require( "../images/profile.png" )}
+                src={profileData.image}
                 alt="Profile"
                 style={{
                   width: "280px",
@@ -124,7 +124,7 @@ function Profile() {
                   left:"838px",
                   top:"163px",
                 }}></img>
-              <button   onClick={() => navigate(`/Editchanel/${profileData.id}`)}
+              <button   onClick={() => navigate(`/Editprofile/${profileData.id}`)}
                 className=" mt-3"
                 style={{ background: "#FFAF00", border: "none",
                 position: "absolute;",

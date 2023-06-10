@@ -8,6 +8,7 @@ import Historytrip from "./components/Historytrip";
 import Modaltransaction from "./components/Modaltransaction";
 // import LoginModal from "./page/LoginModal"
 import Login from "./components/Login"
+import Editprofile from "./pages/Editprofile"
 import Home from "./components/Home";
 import Pay from "./components/Pay";
 import { PrivateRouteAdmin, PrivateRouteLogin, PrivateRouteUser } from "./components/PrivateRoute";
@@ -92,6 +93,7 @@ function App() {
  
   {/* <Route element={<PrivateRouteUser isAdmin={isAdmin} />}> */}
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Editprofile/:id" element={<Editprofile />} />
         <Route path="/Historytrip" element={<Historytrip />} />
         <Route path="/Pay/:id" element={<Pay />} />
   </Route>
