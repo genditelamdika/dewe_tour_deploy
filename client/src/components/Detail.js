@@ -327,6 +327,7 @@ function Detail() {
 
     <h1 style={{marginLeft:"150px"}}>Description</h1>
     <p style={{marginLeft:"150px"}}>{trip?.description}</p>
+    <p style={{marginLeft:"150px"}}>{trip?.fullcounter}</p>
 
     <div className="flex" style={{marginLeft:"150px"}}>
     <h1 style={{color:"#FFAF00" , fontWeight:"bold", height: "33px",fontFamily: 'Avenir'}}>IDR.{trip?.price}</h1>
