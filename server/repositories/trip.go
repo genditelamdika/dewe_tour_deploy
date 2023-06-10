@@ -13,6 +13,7 @@ type TripRepository interface {
 	UpdateTrip(trip models.Trip) (models.Trip, error)
 	DeleteTrip(trip models.Trip) (models.Trip, error)
 	UpdateFullcounter(trip models.Trip) (models.Trip, error)
+	GetCountrytrip(ID int) (models.Country, error)
 	// GetCategoryfilm(ID int) (models.Category, error)
 }
 
@@ -75,4 +76,13 @@ func (r *repository) DeleteTrip(trip models.Trip) (models.Trip, error) {
 	err := r.db.Delete(&trip).Error
 
 	return trip, err
+}
+
+func (r *repository) GetCountrytrip(Id int) (models.Country, error) {
+	var country models.Country
+	err := r.db.First(&country, Id).Error
+	return country, err
+	// err := r.db.Delete(&film).Error
+
+	// return cate, err
 }

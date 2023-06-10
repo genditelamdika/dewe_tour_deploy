@@ -15,69 +15,29 @@ import Card from "react-bootstrap/Card";
 // import InputGroup from 'react-bootstrap/InputGroup';
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 // import ExampleForm from "/hooks/ExampleForm";
 function Home() {
-  // const Tour = {
-  //   TR : {
-  //     tr1: {
-  //       id:1,
-  //       images:"Rectangle1",
-  //       title:"6D/4N Fun Tessie",
-  //       negara:"Australia",
-  //       idr:"12.398.00",
-  //       quote:"15/15"
-  //     },
-  //     tr2: {
-  //       id:2,
-  //       title:"6D/4N Exciting Summer in ...",
-  //       images:"Rectangle2",
-  //       negara:"South Korea",
-  //       idr:"12.398.00",
-  //       quote:"12/15"
-  //     },
-  //     tr3: {
-  //       id:3,
-  //       title:"8D/6N Wonderful Autum ...",
-  //       images:"Rectangle3",
-  //       negara:"Japan",
-  //       idr:"12.398.00",
-  //       quote:"12/15"
-  //     },
-  //     tr4: {
-  //       id:4,
-  //       title:"4D/3N Overland Jakarta B...",
-  //       images:"Rectangle4",
-  //       negara:"Indonesia",
-  //       idr:"12.398.00",
-  //       quote:"12/15"
-  //     },
-  //     tr5: {
-  //       id:5,
-  //       title:"4D/3N Labuan Bajo Delight",
-  //       images:"Rectangle5",
-  //       negara:"Indonesia",
-  //       idr:"12.398.00",
-  //       quote:"11/15"
-  //     },
-  //     tr6: {
-  //       id:6,
-  //       title:"4D/3N Overland Jakarta B...",
-  //       images:"Rectangle6",
-  //       negara:"Japanese",
-  //       idr:"12.398.00",
-  //       quote:"10/15",
-  //     },
+ const [search, setSearch] = useState("");
+ const [datas,setDatas] = useState("");
+ const [filteredData, setFilteredData] = useState([]);
 
-  //   }
-
-  // }
   let { data: trips } = useQuery("tripsChache", async () => {
     const response = await API.get("/trips");
     console.log("data :", response.data);
     return response.data.data;
   });
   console.log(trips)
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+
+    const results = trips.filter((item) =>
+      item.country.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(results);
+  };
 
   return (
     <div className="bg">
@@ -102,10 +62,12 @@ function Home() {
           Search
         </Button>
         <Form.Control
-          style={{ width: "900px" }}
-          className=""
-          type="search"
-          placeholder="Add your item here..."
+           style={{ width: "900px" }}
+           className=""
+           type="search"
+           placeholder="Add your item here..."
+           value={search}
+           onChange={handleSearch}
         />
       </div>
       <img
@@ -133,52 +95,7 @@ function Home() {
               Group Tour
             </h1>
           </div>
-          {/* <Row
-            xs={3}
-            md={3}
-            className="g-3"
-            style={{ marginTop: "0px", marginLeft: "0px",padding:"50px" }}
-          >
-            {trips?.map((item, idx) => (
-              <Link className="text-decoration-none " to={`/Detail/${item.id}`}>
-                <Col key={idx} >
-                  <Card style={{ padding:"30px" }}>
-                  <p className="text-decoration-none" style={{marginLeft:"290px",marginTop:"30px",position:"absolute",background:"white",borderRadius:"5px 0 0 5px",textAlign:"center",width:"50px",height:"30px"}}>0/{item.quota}</p>
-                    <Card.Img variant="dark" src={item.image} />
-                    <Card.Body>
-                      <Card.Title style={{ color: "black" }}>
-                        {item.title}
-                      </Card.Title>
-                      <div className="flex" style={{marginTop:"10px"}}>
-
-                      <Card.Title
-                        style={{
-                          fontSize: "14px",
-                          textDecoration: "none",
-                          cursor: "pointer",
-                          color: "#555555",
-                        }}
-                        >
-                        {item.country.name}
-                      </Card.Title>
-                      <Card.Title
-                      style={{
-                        fontSize:"14px",
-                        marginLeft:"200px",
-                        color:"yellow",
-                      }}
-                      >
-                        IDR.{item.price}
-                      </Card.Title>
-
-                        </div>
-
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Link>
-            ))}
-          </Row> */}
+ 
         </div>
         <div style={{marginTop:"700px"}}>
            <Row
@@ -186,8 +103,13 @@ function Home() {
             md={3}
             className="g-3"
             style={{ marginTop: "0px", marginLeft: "0px",padding:"50px" }}
+
           >
-            {trips?.map((item, idx) => (
+             {filteredData.length === 0 ? (
+            <p>Kontol doni</p>
+          ) : (
+
+            filteredData?.map((item, idx) => (
               <Link className="text-decoration-none " to={`/Detail/${item.id}`}>
                 <Col key={idx} >
                   <Card style={{ padding:"30px" }}>
@@ -225,12 +147,18 @@ function Home() {
                   </Card>
                 </Col>
               </Link>
-            ))}
+          )
+
+            )
+            )
+            }
+
+
           </Row>
-        </div>
-        <div style={{ paddingTop: "1650px" }}>
           <Footer style={{ marginTop: "800px" }} />
         </div>
+        {/* <div style={{ paddingTop: "1650px" }}>
+        </div> */}
       </div>
 
       {/* </div> */}

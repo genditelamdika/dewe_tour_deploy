@@ -127,6 +127,20 @@ func (h *handlerTrip) UpdateTrip(c echo.Context) error {
 	// get the datafile here
 	dataFile := c.Get("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
+	var ctx = context.Background()
+	var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+	var API_KEY = os.Getenv("API_KEY")
+	var API_SECRET = os.Getenv("API_SECRET")
+
+	// Add your Cloudinary credentials ...
+	cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+
+	// Upload file to Cloudinary ...
+	resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	countryid, _ := strconv.Atoi(c.FormValue("countryid"))
 	day, _ := strconv.Atoi(c.FormValue("day"))
@@ -146,7 +160,7 @@ func (h *handlerTrip) UpdateTrip(c echo.Context) error {
 		Price:          price,
 		Quota:          quota,
 		Description:    c.FormValue("description"),
-		Image:          dataFile,
+		Image:          resp.SecureURL,
 	}
 
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -191,10 +205,13 @@ func (h *handlerTrip) UpdateTrip(c echo.Context) error {
 		trip.Image = request.Image
 	}
 
+	dataCountry, _ := h.TripRepository.GetCountrytrip(trip.CountryID)
+
 	data, err := h.TripRepository.UpdateTrip(trip)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
+	data.Country = dataCountry
 
 	return c.JSON(http.StatusOK, dto.SuccessResult{Code: http.StatusOK, Data: convertResponsetrip(data)})
 }
