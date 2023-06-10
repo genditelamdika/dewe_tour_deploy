@@ -25,16 +25,24 @@ function Detail() {
     const response = await API.get(`/trip/${id}`);
     return response.data.data;
   });
+  console.log("triippppppp",trip)
     // Function untuk meng-update view counter
     // const { id } = useParams();
-    const handleFullcounter = async (id) => {
+    const handleFullcounter = async () => {
       try {
-        // console.log(tripidd,"kontol teguhhhhh")
-          await API.patch(`/UpdateFullcounter/${id}}`);
+        // Mengambil nilai counterqty dari localStorage
+        const storedData = JSON.parse(localStorage.getItem('counterqty'));
+        const counterqty = storedData.counterqty;
+    
+        // Kirim permintaan PATCH ke API dengan nilai counterqty
+        await API.patch(`/UpdateFullcounter/${id}`, { counterqty });
+        
+        // Menampilkan pesan sukses atau melakukan tindakan lain yang diinginkan
+        console.log('Counterqty updated successfully');
       } catch (err) {
-          console.log(err);
+        console.log(err);
       }
-  };
+    };
 
 
   console.log(id);
@@ -81,6 +89,7 @@ function Detail() {
       counterqty: counterqty,
       status:"waiting payment",
       tripid: parseInt(id),
+      fullcounter:trip?.fullcounter,
       userid:state.user.id
       
     }) //Store product data
@@ -114,6 +123,7 @@ function Detail() {
         const data = {
           total: total,
       counterqty: counterqty,
+      // fullcounter: counterqty + fullcounter,
       // status:"pendding",
       tripid: parseInt(id),
       // userid:state.user.id
@@ -343,7 +353,7 @@ function Detail() {
     <div style={{margin: "150px", marginTop:"0",marginBottom:"0"}}>
     <hr style={{ borderTop: "2px solid black" }} />
     </div>
-    <Button type="button" onClick={handleFullcounter}>tes update</Button>
+    <Button type="button" onClick={() => handleFullcounter()}>tes update</Button>
     { state.isLogin ? (
 
   <Button  onClick={(e) => handleSubmit.mutate(e)} type="submit"  style={{

@@ -61,6 +61,22 @@ function Pay() {
       getProfileData()
     }, [])
 
+    const handleFullcounter = async () => {
+      try {
+        // Mengambil nilai counterqty dari localStorage
+        const storedData = JSON.parse(localStorage.getItem('counterqty'));
+        const counterqty = storedData.counterqty;
+    
+        // Kirim permintaan PATCH ke API dengan nilai counterqty
+        await API.patch(`/UpdateFullcounter/${id}`, { counterqty });
+        
+        // Menampilkan pesan sukses atau melakukan tindakan lain yang diinginkan
+        console.log('Counterqty updated successfully');
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    
     // useEffect(() => {
     //   const savedTotalHarga = localStorage.getItem('total');
     //   const savedJumlahProduk = localStorage.getItem('counterqty');
@@ -184,7 +200,7 @@ function Pay() {
                 <h3  style={{marginLeft:"30px",fontWeight:"bold",color:"red"}}>{totalHarga}</h3>
             </div>
             <div>
-            <Button type="button" onClick={handleModalShow} style={{
+            <Button type="button" onClick={handleFullcounter} style={{
       marginLeft:"730px",
       marginTop:"50px",
       width: "213px",

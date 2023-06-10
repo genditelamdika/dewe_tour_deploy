@@ -14,6 +14,7 @@ type TripRepository interface {
 	DeleteTrip(trip models.Trip) (models.Trip, error)
 	UpdateFullcounter(trip models.Trip) (models.Trip, error)
 	GetCountrytrip(ID int) (models.Country, error)
+	// GetTransactionCounterQty(tripID int) (int, error)
 	// GetCategoryfilm(ID int) (models.Category, error)
 }
 
@@ -71,10 +72,17 @@ func (r *repository) UpdateFullcounter(trip models.Trip) (models.Trip, error) {
 		return trip, err
 	}
 
-	trip.Fullcounter += counterQty
+	trip.Fullcounter = counterQty
 
 	err = r.db.Preload("Country").Preload("Transaction").Save(&trip).Error
 	return trip, err
+}
+func (r *repository) GetTransactionCounterQty(tripID int, counterQty *int) error {
+	err := r.db.Model(&models.Transaction{}).
+		Select("COALESCE(SUM(counterqty), 0)").
+		Where("trip_id = ?", tripID).
+		Scan(counterQty).Error
+	return err
 }
 
 func (r *repository) DeleteTrip(trip models.Trip) (models.Trip, error) {
