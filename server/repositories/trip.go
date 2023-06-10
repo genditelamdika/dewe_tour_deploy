@@ -10,7 +10,7 @@ type TripRepository interface {
 	FindTrips() ([]models.Trip, error)
 	GetTrip(ID int) (models.Trip, error)
 	CreateTrip(trip models.Trip) (models.Trip, error)
-	UpdateTrip(trip models.Trip) (models.Trip, error)
+	UpdateTrip(trip models.Trip, Id int) (models.Trip, error)
 	DeleteTrip(trip models.Trip) (models.Trip, error)
 	UpdateFullcounter(trip models.Trip) (models.Trip, error)
 	GetCountrytrip(ID int) (models.Country, error)
@@ -40,19 +40,24 @@ func (r *repository) CreateTrip(trip models.Trip) (models.Trip, error) {
 
 	return trip, err
 }
+func (r *repository) UpdateTrip(trip models.Trip, Id int) (models.Trip, error) {
+	err := r.db.Model(&trip).Updates(&trip).Error
 
-func (r *repository) UpdateTrip(trip models.Trip) (models.Trip, error) {
-	err := r.db.Transaction(func(db *gorm.DB) error {
-		if err := r.db.Preload("Country").Model(&trip).Updates(&trip).Error; err != nil {
-			return err
-		}
-		if err := r.db.Exec("UPDATE trips SET country_id=? WHERE id=?", trip.CountryID, trip.ID).Error; err != nil {
-			return err
-		}
-		return nil
-	})
 	return trip, err
 }
+
+// func (r *repository) UpdateTrip(trip models.Trip) (models.Trip, error) {
+// 	err := r.db.Transaction(func(db *gorm.DB) error {
+// 		if err := r.db.Preload("Country").Model(&trip).Updates(&trip).Error; err != nil {
+// 			return err
+// 		}
+// 		if err := r.db.Exec("UPDATE trips SET country_id=? WHERE id=?", trip.CountryID, trip.ID).Error; err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// 	return trip, err
+// }
 
 // func (r *repository) UpdateFullcounter(trip models.Trip) (models.Trip, error) {
 // 	err := r.db.Preload("Country").Preload("Transaction").Save(&trip).Error

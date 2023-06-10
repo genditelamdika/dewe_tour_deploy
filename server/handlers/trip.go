@@ -207,7 +207,7 @@ func (h *handlerTrip) UpdateTrip(c echo.Context) error {
 
 	dataCountry, _ := h.TripRepository.GetCountrytrip(trip.CountryID)
 
-	data, err := h.TripRepository.UpdateTrip(trip)
+	data, err := h.TripRepository.UpdateTrip(trip, id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()})
 	}
