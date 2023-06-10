@@ -169,7 +169,7 @@ function Trip() {
                       height: "30px",
                     }}
                   >
-                    {item.quota}
+                    {item.fullcounter}/{item.quota}
                   </p>
                   <Card.Img variant="dark" src={item.image} />
                 <Link className="text-decoration-none " to={`/Detail/${item.id}`}>

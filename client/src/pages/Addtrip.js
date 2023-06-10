@@ -27,6 +27,7 @@ function Addtrip() {
     datetrip: "",
     price: "",
     quota: "",
+    fullcounter: "",
     description: "",
     image: "",
   }); //Store product data
@@ -77,6 +78,7 @@ function Addtrip() {
       formData.set("datetrip", form.datetrip);
       formData.set("price", Number(form.price));
       formData.set("quota", Number(form.quota));
+      formData.set("fullcounter", Number(form.fullcounter));
       formData.set("description", form.description);
       formData.set("image", form.image[0], form.image[0].name);
 
@@ -288,6 +290,22 @@ function Addtrip() {
               placeholder="quota"
               onChange={handleChange}
               name="quota"
+
+              // name="quota"
+            />
+          </Form.Group>
+          <Form.Group className="mb-4" controlId="formGridAddress1">
+            <Form.Label>Set Quota</Form.Label>
+            <Form.Control
+              style={{
+                background: "rgba(195, 195, 195, 0.5)",
+                height: "50px",
+                color: "black",
+              }}
+              type="number"
+              placeholder="fullcounter"
+              onChange={handleChange}
+              name="fullcounter"
 
               // name="quota"
             />

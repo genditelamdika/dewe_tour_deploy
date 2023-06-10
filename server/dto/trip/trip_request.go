@@ -13,6 +13,7 @@ type CreateTripRequest struct {
 	Night          int            `json:"night" form:"night" gorm:"type: int"`
 	DateTrip       string         `json:"datetrip" form:"datetrip" gorm:"type: varchar(255)"`
 	Price          int            `json:"price" form:"price" gorm:"type: int"`
+	Fullcounter    int            `json:"fullcounter" form:"fullcounter" gorm:"type: int"`
 	Quota          int            `json:"quota" form:"quota" gorm:"type: int"`
 	Description    string         `json:"description" form:"description" gorm:"type: varchar(255)"`
 	Image          string         `json:"image" form:"image" gorm:"type: varchar(255)"`
@@ -30,7 +31,8 @@ type UpdateTripRequest struct {
 	DateTrip       string         `json:"datetrip" form:"datetrip" gorm:"type: varchar(255)"`
 	Price          int            `json:"price" form:"price" gorm:"type: int"`
 	Quota          int            `json:"quota" form:"quota" gorm:"type: int"`
-	Description    string         `json:"description" form:"description" gorm:"type: varchar(255)"`
-	Image          string         `json:"image" form:"image" gorm:"type: varchar(255)"`
-	Fullcounter    int            `json:"fullcounter" form:"fullcounter"`
+	// Fullcounter          int            `json:"quota" form:"quota" gorm:"type: int"`
+	Description string `json:"description" form:"description" gorm:"type: varchar(255)"`
+	Image       string `json:"image" form:"image" gorm:"type: varchar(255)"`
+	Fullcounter int    `json:"fullcounter" form:"fullcounter"`
 }
