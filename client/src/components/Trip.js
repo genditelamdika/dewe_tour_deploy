@@ -201,7 +201,7 @@ function Trip() {
                   </Card.Body>
             </Link>
                   <Card.Body>
-                    <button onClick={handleDelete} type="buton" className="shadow  btn btn-danger fw-bold  " style={{width:"70px"}} name={item.id} value={item.id}>Delete</button>
+                    <button onClick={handleDelete} type="buton" className="shadow  btn btn-danger fw-bold  " style={{width:"90px"}} name={item.id} value={item.id}>Delete</button>
                   </Card.Body>
                 </Card>
               </Col>
