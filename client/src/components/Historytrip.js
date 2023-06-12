@@ -97,7 +97,7 @@ function Historytrip() {
 
       <div className="flex">
                 <div style={{marginLeft:"0px",}}>
-                <p style={{color: "green", paddingTop:"10px",fontFamily:"Avenir",fontWeight:"bold"}}>Approve</p>
+                <p style={{color: "green", paddingTop:"10px",fontFamily:"Avenir",fontWeight:"bold"}}>{item.status}</p>
       </div>
 
 
