@@ -354,7 +354,7 @@ function Detail() {
     <div style={{margin: "150px", marginTop:"0",marginBottom:"0"}}>
     <hr style={{ borderTop: "2px solid black" }} />
     </div>
-    <Button type="button" onClick={() => handleFullcounter()}>tes update</Button>
+
     { state.isLogin ? (
 
   <Button  onClick={(e) => handleSubmit.mutate(e)} type="submit"  style={{
@@ -368,7 +368,7 @@ function Detail() {
   }}>Book</Button>
    
   ) : (
-    <div></div>
+    <div>beli benaran ya</div>
   )
 }
 

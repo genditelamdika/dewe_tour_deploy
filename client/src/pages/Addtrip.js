@@ -55,6 +55,7 @@ function Addtrip() {
       let url = URL.createObjectURL(e.target.files[0]);
     }
   };
+   const MySwal = withReactContent(Swal);
 
   const handleSubmit = useMutation(async (e) => {
     try {
@@ -85,6 +86,11 @@ function Addtrip() {
       // Insert product data
       const response = await API.post("/trip", formData, config);
       console.log("add product success : ", response);
+      MySwal.fire({
+    title: <strong>Ah Yang Benerr</strong>,
+    html: <i>You clicked the button!</i>,
+    icon: 'success'
+    })
       navigate("/Trip");
     } catch (error) {
       console.log("add product failed : ", error);
