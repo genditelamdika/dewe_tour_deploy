@@ -17,7 +17,6 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-// import ExampleForm from "/hooks/ExampleForm";
 function Home() {
  const [search, setSearch] = useState("");
  const [datas,setDatas] = useState("");
@@ -106,7 +105,7 @@ function Home() {
 
           >
              {filteredData.length === 0 ? (
-            <p>Kontol doni</p>
+            <p></p>
           ) : (
 
             filteredData?.map((item, idx) => (

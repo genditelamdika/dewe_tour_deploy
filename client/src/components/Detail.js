@@ -179,34 +179,7 @@ function Detail() {
         document.body.removeChild(scriptTag);
       };
     }, []);
-    // const mutation = useMutation((jsonData) => API.post("/transaction", jsonData,{
-    //   Authorization:"Bearer " + localStorage.token
-    // }));
-    // const handleSubmit = async () => {
-    //   const jsonData = ({
-    //     total: form.total,
-    //     counterqty: form.counterqty,
-    //     status: form.status,
-    //     tripid: form.tripid,
-    //     userid: form.userid 
-    //   });
-    //   // navigate("/Pay:/id")
-  
-    //   try {
-    //     await mutation.mutateAsync(jsonData);
-    //     // alert("Transaksi berhasil!");
-    //     // MySwal.fire({
-    //     //   title: <strong>Add Book Success</strong>,
-    //     //   html: <i>You clicked the button!</i>,
-    //     //   icon: 'success'
-    //     //   })
-    //     // navigate(`/Pay/${id}`)
-    //     console.log("Transaction success!");
-    //   } catch (error) {
-    //     alert("Gagal berhasil!");
-    //     console.log("Transaction failed: ", error);
-    //   }
-    // };
+    
 
 
 
@@ -368,7 +341,7 @@ function Detail() {
   }}>Book</Button>
    
   ) : (
-    <div>beli benaran ya</div>
+    <div></div>
   )
 }
 
