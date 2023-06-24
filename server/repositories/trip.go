@@ -14,8 +14,6 @@ type TripRepository interface {
 	DeleteTrip(trip models.Trip) (models.Trip, error)
 	// UpdateFullcounter(trip models.Trip) (models.Trip, error)
 	GetCountrytrip(ID int) (models.Country, error)
-	// GetTransactionCounterQty(tripID int) (int, error)
-	// GetCategoryfilm(ID int) (models.Category, error)
 }
 
 func RepositoryTrip(db *gorm.DB) *repository {
